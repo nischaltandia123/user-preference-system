@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New User</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Add New User</h1>
+    <form id="userForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+
+        <label for="preferences">Preferences:</label>
+        <input type="text" id="preferences" name="preferences" required><br>
+
+        <button type="button" onclick="submitForm()">Add User</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const preferences = document.getElementById('preferences').value;
+
+            const user = {
+                email: email,
+                name: name,
+                age: age,
+                preferences: preferences
+            };
+
+            fetch('http://localhost:8080/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('User added successfully');
+                } else {
+                    alert('Error adding user');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

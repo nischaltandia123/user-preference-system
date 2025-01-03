@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get User by Email</title>
+	<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <h1>Get User by Email</h1>
+    <form id="getUserForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <button type="button" onclick="getUser()">Get User</button>
+    </form>
+
+    <div id="userDetails"></div>
+
+    <script>
+		function getUser() {
+		    const email = document.getElementById('email').value;
+
+		    fetch(`http://localhost:8080/api/users/${email}`)
+		        .then(response => {
+		            if (response.ok) {
+		                // If the response is OK (status 200), parse and return the JSON
+		                return response.json();
+		            } else if (response.status === 404) {
+		                // If the response is a 404 error, redirect to the "not found" page
+		                window.location.href = '/notfound.html';
+		                throw new Error("User not found");
+		            } else {
+		                throw new Error("An unexpected error occurred");
+		            }
+		        })
+	  	        .then(user => {
+		            // Display the user details if the response was OK
+		            document.getElementById('userDetails').innerHTML = `
+		                <h3>User Details</h3>
+		                <p><strong>Email:</strong> ${user.email}</p>
+		                <p><strong>Name:</strong> ${user.name}</p>
+		                <p><strong>Age:</strong> ${user.age}</p>
+		                <p><strong>Preferences:</strong> ${user.preferences}</p>
+		            `;
+		        })
+		        .catch(error => {
+		            console.error(error.message);
+		        });
+		}
+
+    </script>
+</body>
+</html>

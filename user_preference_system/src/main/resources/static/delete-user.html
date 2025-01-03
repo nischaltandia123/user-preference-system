@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User by Email</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Delete User by Email</h1>
+    <form id="deleteUserForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <button type="button" onclick="deleteUser()">Delete User</button>
+    </form>
+
+    <div id="deleteStatus"></div>
+
+    <script>
+		function deleteUser() {
+		    const email = document.getElementById('email').value;
+
+		    fetch(`http://localhost:8080/api/users/delete/${email}`, {
+		        method: 'DELETE',
+		    })
+		        .then(async response => {
+		            if (response.ok) {
+		                document.getElementById('deleteStatus').innerHTML = 'User deleted successfully.';
+		            } else {
+					              
+					               window.location.href = '/notfound.html';
+					           }
+		        })
+		        .catch(error => {
+		            document.getElementById('deleteStatus').innerHTML = 'Error: ' + error.message;
+		        });
+		}
+
+    </script>
+</body>
+</html>

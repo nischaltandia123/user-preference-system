@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Already Exists</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f85032, #e73827);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            width: 450px;
+        }
+        .container h1 {
+            font-size: 28px;
+            color: #ffcccc;
+            margin-bottom: 20px;
+        }
+        .container p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #ffd6d6;
+        }
+        .container a {
+            text-decoration: none;
+            color: #ff6961;
+            font-weight: bold;
+            font-size: 18px;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease-in-out;
+        }
+        .container a:hover {
+            background: #ff6961;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(255, 105, 97, 0.5);
+        }
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">⚠️</div>
+        <h1>User Already Exists</h1>
+        <p>The email address you entered is already registered in our system.</p>
+        <p>Please try again with a different email address or contact support if you need assistance.</p>
+        <a href="add_user_form.html">Go Back</a>
+    </div>
+</body>
+</html>

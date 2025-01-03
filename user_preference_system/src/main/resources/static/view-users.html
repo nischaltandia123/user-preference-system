@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Users</title>
+	<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <h1>All Users</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Preferences</th>
+            </tr>
+        </thead>
+        <tbody id="userTable">
+            <!-- Users will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        fetch('http://localhost:8080/api/users')
+            .then(response => response.json())
+            .then(users => {
+                let userTable = document.getElementById('userTable');
+                users.forEach(user => {
+                    let row = userTable.insertRow();
+                    row.insertCell(0).innerHTML = user.email;
+                    row.insertCell(1).innerHTML = user.name;
+                    row.insertCell(2).innerHTML = user.age;
+                    row.insertCell(3).innerHTML = user.preferences;
+                });
+            });
+    </script>
+</body>
+</html>
