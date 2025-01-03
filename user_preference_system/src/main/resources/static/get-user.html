@@ -24,10 +24,10 @@
 		    fetch(`http://localhost:8080/api/users/${email}`)
 		        .then(response => {
 		            if (response.ok) {
-		                // If the response is OK (status 200), parse and return the JSON
+		               
 		                return response.json();
 		            } else if (response.status === 404) {
-		                // If the response is a 404 error, redirect to the "not found" page
+		                
 		                window.location.href = '/notfound.html';
 		                throw new Error("User not found");
 		            } else {
@@ -35,7 +35,7 @@
 		            }
 		        })
 	  	        .then(user => {
-		            // Display the user details if the response was OK
+		        
 		            document.getElementById('userDetails').innerHTML = `
 		                <h3>User Details</h3>
 		                <p><strong>Email:</strong> ${user.email}</p>
